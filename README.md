@@ -10,7 +10,7 @@ disable user accounts when necessary.
 
 Create a .env file and add the following variables:
 
-PORT=5000
+PORT = 9878
 
 MONGODB_CONNECTION_STRING='please enter your mongodb connection string'
 
