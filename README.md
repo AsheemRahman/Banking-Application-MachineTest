@@ -11,6 +11,9 @@ disable user accounts when necessary.
 Create a .env file and add the following variables:
 
 PORT=5000
+
 MONGODB_CONNECTION_STRING='please enter your mongodb connection string'
+
 ADMIN_USERNAME="add admin username"
+
 ADMIN_PASSWORD="add admin password"
