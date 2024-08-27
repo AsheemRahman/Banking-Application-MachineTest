@@ -34,7 +34,6 @@ const signupPost = async (req, res) => {
       .catch(err => {
         console.log(`error while user signup ${err}`)
       })
-    res.redirect('/login')
   } catch (error) {
     res.status(500).json({ error: 'Error registering user' });
   }

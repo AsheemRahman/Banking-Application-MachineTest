@@ -43,11 +43,12 @@ const loginPost = (req,res)=>{
             res.cookie('adminToken', adminToken , options);
             return res.redirect('/admin/dashboard')
         }else{
-            res.redirect('/admin/login')
+            return res.status(401).json({ message: 'Invalid email or password' });
         }
         
     } catch (error) {
         console.log(`error from login post ${error}`)
+        return res.status(500).json({ message: 'Internal server error' });
     }
 }
 
