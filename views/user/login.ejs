@@ -1,0 +1,288 @@
+<style>
+    .user-login {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 4rem;
+    }
+
+    .user-login-container {
+        display: flex;
+        flex-direction: row;
+        background-color: #232323;
+        border-radius: 10px;
+        color: #fefeeb;
+    }
+
+    .image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 50px;
+    }
+
+    .image-container img {
+        width: 350px;
+        height: 375px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .form-container {
+        width: 550px;
+        padding-right: 50px;
+        padding-top: 10px;
+    }
+
+    .form-container h2 {
+        margin: 0 0 20px 0;
+        padding-top: 10px;
+    }
+
+    .form-container form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .user-login-input {
+        padding: 3px;
+        margin-bottom: 10px;
+        width: 100%;
+        height: 3rem;
+        border: none;
+        outline: none;
+        background: transparent;
+        border-bottom: 1px solid #ffffff;
+        color: #fefeeb;
+    }
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus {
+        -webkit-text-fill-color: #fff;
+        transition: background-color 5000s ease-in-out 0s;
+    }
+
+    .forgot-password {
+        text-align: right;
+        margin-bottom: 20px;
+    }
+
+    .forgot-password a {
+        color: #db4437;
+        text-decoration: none;
+    }
+
+    .forgot-password a:hover {
+        color: #f55;
+    }
+
+    .user-login-button {
+        padding: 10px;
+        margin-bottom: 20px;
+        border: none;
+        border-radius: 10px;
+        background-color: #db4437;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .user-login-button:hover {
+        background-color: #f55;
+
+    }
+
+    .divider {
+        text-align: center;
+        margin-bottom: 20px;
+        position: relative;
+    }
+
+    .divider span {
+        background-color: #1A1A1A;
+        padding: 0 10px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .divider::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background-color: #fefeeb;
+        z-index: 0;
+    }
+
+    .social-login {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    .social-login a {
+        width: 100%;
+        text-decoration: none;
+    }
+
+    .social-login button {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        margin: 0 5px;
+        cursor: pointer;
+    }
+
+    .social-login .facebook {
+        background-color: #0866FF;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 95%;
+    }
+
+    .facebook:hover {
+        background-color: #4285F4;
+    }
+
+    .social-login .google {
+        background-color: #db4437;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 95%;
+    }
+
+    .google:hover {
+        background-color: #f55;
+
+    }
+
+    .signup-link {
+        text-align: center;
+    }
+
+    .signup-link a {
+        color: #db4437;
+        text-decoration: none;
+    }
+
+    .signup-link a:hover {
+        color: #f55;
+    }
+
+    /* Media Queries */
+    @media (max-width: 768px) {
+        .user-login-container {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .image-container {
+            padding: 10px;
+        }
+
+        .image-container img {
+            width: 100%;
+            max-width: 300px;
+            max-height: 325px;
+        }
+
+        .form-container {
+            padding: 20px;
+            width: 100%;
+        }
+    }
+</style>
+
+<%- include('navbar') %>
+<!-------------------------------------------- User Login Page ------------------------------------------------->
+
+<div class="user-login">
+    <div class="user-login-container">
+        <div class="image-container">
+            <img src="/public/assets/login-img.jpg">
+        </div>
+        <div class="form-container">
+            <form id="login-form">
+                <h2 class="mt-4">Log in to Banking</h2>
+                <input class="user-login-input mb-4 mt-2" type="text" name="email" placeholder="Email or Phone Number" required>
+                <div class="form-group position-relative d-flex align-items-center">
+                    <input class="user-login-input" type="password" name="password" placeholder="Password" id="password" required>
+                    <span id="toggle-password" class="me-1 password-toggle align-content-center position-absolute end-0">
+                        <i class="bi bi-eye-slash"></i>
+                    </span>
+                </div>
+                <div id="login-error" class="mt-2" style="display: none; color: red;"></div>
+                <button class="user-login-button mt-5" type="submit">Log In</button>
+            </form>
+            <div class="signup-link mt-4">
+                <p>Don't you have an account? <a href="/">Signup</a></p>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<%- include('footer') %>
+
+<script>
+    document.getElementById('toggle-password').addEventListener('click', function () {
+        togglePassword('password', this);
+    });
+
+    function togglePassword(id, toggle) {
+        const pass = document.getElementById(id);
+        const type = pass.getAttribute('type') === 'password' ? 'text' : 'password';
+        pass.setAttribute('type', type);
+        toggle.innerHTML = type === 'password' ? '<i class="bi bi-eye-slash"></i>' : '<i class="bi bi-eye"></i>';
+    }
+    document.getElementById('login-form').addEventListener('submit', async function (event) {
+    event.preventDefault();
+
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+
+    try {
+        const response = await fetch('/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, password })
+        });
+
+        const contentType = response.headers.get('Content-Type');
+        let result;
+        
+        if (contentType && contentType.includes('application/json')) {
+            result = await response.json();
+        } else {
+            throw new Error('Invalid JSON response');
+        }
+
+        const errorDiv = document.getElementById('login-error');
+
+        if (response.ok) {
+            window.location.href = '/dashboard';
+        } else {
+            console.error('Server response error:', result.message);
+            errorDiv.textContent = result.message;
+            errorDiv.style.display = 'block';
+        }
+    } catch (error) {
+        console.error('Error during fetch request:', error);
+        document.getElementById('login-error').textContent = 'An unexpected error occurred';
+        document.getElementById('login-error').style.display = 'block';
+    }
+});
+
+
+</script>

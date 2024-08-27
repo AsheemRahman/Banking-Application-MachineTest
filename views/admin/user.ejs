@@ -1,0 +1,202 @@
+<style>
+    .admin-product {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-head {
+        border-radius: 10px;
+        margin: 24px;
+        background: #232323;
+        width: 95%;
+        padding: 1rem;
+    }
+
+    .product-header {
+        margin-left: 30px;
+    }
+
+
+    .form-input {
+        height: 80%;
+    }
+
+    .form-product {
+        display: flex;
+        align-items: center;
+    }
+
+    /* table */
+    .table-container {
+    width: 95%;
+    background: #232323;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(100, 98, 98, 0.5);
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 15px;
+    margin: 20px 0;
+    font-size: 1em;
+    width: 100%;
+}
+
+.table thead th {
+    padding: 12px 15px;
+    background: #1a1a1a;
+    color: #fefeeb;
+    border-style: none;
+}
+
+.table tbody tr {
+    background: #232323;
+    border-radius: 10px;
+}
+
+.table tbody tr td {
+    padding: 12px 15px;
+    text-align: left;
+    background: #232323;
+    color: #fefeeb;
+}
+.product-table-first {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.product-table-last {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.products-icon {
+    display: flex;
+    gap: 20px;
+}
+
+.status.active {
+    color: #4CAF50;
+}
+
+.status.block {
+    color: #F44336;
+}
+
+.bi.bi-trash3 {
+    color: #FF0000;
+}
+
+.submit-btn {
+    color: #fefeeb;
+    background: #DB4444;
+    margin: 20px;
+}
+
+.submit-btn:hover {
+    background: #CE5252;
+}
+
+
+
+@media (max-width: 600px) {
+    .table thead {
+        display: none;
+    }
+
+    .table,
+    .table tbody,
+    .table tr,
+    .table td {
+        display: block;
+        width: 100%;
+    }
+
+    .table tr {
+        margin-bottom: 15px;
+    }
+
+    .table td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+
+    .table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px;
+        font-weight: bold;
+        text-align: left;
+    }
+}
+
+</style>
+
+
+<div class="admin-product mb-5">
+    <div class="product-head d-flex justify-content-between">
+        <div class="product-header d-flex justify-content-between align-items-center gap-5">
+            <h2 class="text-white">
+                <%= title %>
+            </h2>
+            <form action="/admin/dashboard" method="get" class="form-product  d-flex gap-1">
+                <input type="text" name="search" placeholder="search" class="form-input form-control">
+                <input type="submit" class="btn btn-danger  submit-btn" value="Search">
+            </form>
+        </div>
+        <a href="/admin/logout" class="btn btn-danger" style="margin: 1rem;"><i class="fas fa-sign-out-alt"></i>logout</a>
+    </div>
+
+    <!--------------------------------------- User table ---------------------------------------------------->
+
+    <div class="table-container">
+        <table class="table">
+            <thead>
+                <tr scope="row" class="product-table-head">
+                    <th scope="col" class="product-table-first">SL.No</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Status</th>
+                    <th scope="col" class="product-table-last">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% user.forEach((user,index)=> { %>
+                    <tr scope="row">
+                        <td>
+                            <%= index + 1 %>
+                        </td>
+                        <td>
+                            <%= user.name %>
+                        </td>
+                        <td>
+                            <%= user.email %>
+                        </td>
+                        <td>
+                            <%= user.phone %>
+                        </td>
+                        <td>
+                            <% if(user.isActive) { %>
+                                <span class="status active">Active</span>
+                                <% }else{ %>
+                                    <span class="status block">Blocked</span>
+                                    <% } %>
+                        </td>
+                        <td>
+                            <a href="/admin/userstatus?id=<%= user.id %>&&status=<%= user.isActive%>"><i
+                                    class="bi bi-x-circle"></i></a>
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>
