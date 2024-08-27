@@ -17,3 +17,5 @@ MONGODB_CONNECTION_STRING='please enter your mongodb connection string'
 ADMIN_USERNAME="add admin username"
 
 ADMIN_PASSWORD="add admin password"
+
+JWT_SECRET="123456789"
