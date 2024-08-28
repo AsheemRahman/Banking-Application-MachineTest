@@ -88,7 +88,6 @@ const status = async (req,res)=> {
 const transaction = async(req,res) =>{
     try{
         const user = req.params.id
-        console.log(user)
         const transactions = await transactionSchema.find({ userId : user }).sort({ createdAt: -1 });
         res.render('admin/transaction',{title: "Transaction Details" ,transactions })
     }catch(error){
