@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken')
 
 const userSchema = require('../../model/userSchema')
+const transactionSchema = require('../../model/transactionSchema');
 
 
 //--------------------------- admin routes ------------------------------
@@ -84,6 +85,17 @@ const status = async (req,res)=> {
     }
 }
 
+const transaction = async(req,res) =>{
+    try{
+        const user = req.params.id
+        console.log(user)
+        const transactions = await transactionSchema.find({ userId : user }).sort({ createdAt: -1 });
+        res.render('admin/transaction',{title: "Transaction Details" ,transactions })
+    }catch(error){
+        console.log(`error while render transaction page ${error}`)
+    }
+}
+
 
 //------------------------ Logout ---------------------------
 
@@ -98,4 +110,4 @@ const logout = (req, res) => {
 
 
 
-module.exports ={ admin , login , loginPost , dashboard , status ,logout }
+module.exports ={ admin , login , loginPost , dashboard , status , transaction ,logout }

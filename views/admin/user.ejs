@@ -136,6 +136,9 @@
         text-align: left;
     }
 }
+.view{
+    text-decoration: none;
+}
 
 </style>
 
@@ -165,7 +168,8 @@
                     <th scope="col">Email</th>
                     <th scope="col">Phone</th>
                     <th scope="col">Status</th>
-                    <th scope="col" class="product-table-last">Action</th>
+                    <th scope="col">Action</th>
+                    <th scope="col" class="product-table-last">Transaction</th>
                 </tr>
             </thead>
             <tbody>
@@ -193,6 +197,11 @@
                         <td>
                             <a href="/admin/userstatus?id=<%= user.id %>&&status=<%= user.isActive%>"><i
                                     class="bi bi-x-circle"></i></a>
+                        </td>
+                        <td>
+                            <a href="/admin/transaction/<%= user.id %>" class="view">
+                                <i class="bi bi-eye mx-3" ></i>View
+                            </a>
                         </td>
                     </tr>
                     <% }) %>

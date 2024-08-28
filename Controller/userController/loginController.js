@@ -26,14 +26,20 @@ const signupPost = async (req, res) => {
       password: hashedPassword,
       phone: phone
     }
-    await userSchema.insertMany(details)
-      .then(() => {
-        console.log(`new user registeres successfully`)
-        res.redirect('/login')
-      })
-      .catch(err => {
-        console.log(`error while user signup ${err}`)
-      })
+
+    const check = await userSchema.findOne({ email: details.email })
+
+    if (check) {
+      res.redirect('/login')
+    }else{
+      await userSchema.insertMany(details)
+        .then(() => {
+          res.redirect('/login')
+        })
+        .catch(err => {
+          console.log(`error while user signup ${err}`)
+        })
+    }
   } catch (error) {
     res.status(500).json({ error: 'Error registering user' });
   }

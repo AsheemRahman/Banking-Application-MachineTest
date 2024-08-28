@@ -19,10 +19,18 @@ admin.post('/login', adminController.loginPost);
 
 admin.get('/dashboard', isAdmin , adminController.dashboard)
 
+
 //-------------------  user Block and unblock  ---------------------------
 
 admin.get('/userstatus', isAdmin, adminController.status);
 
+
+//----------------------------  transaction  ---------------------------------
+
+admin.get('/transaction/:id', isAdmin, adminController.transaction);
+
+
+//----------------------------  Logout  ---------------------------------
 
 admin.get('/logout' , adminController.logout)
 
