@@ -30,116 +30,118 @@
 
     /* table */
     .table-container {
-    width: 95%;
-    background: #232323;
-    padding: 10px;
-    box-shadow: 0 0 10px rgba(100, 98, 98, 0.5);
-    border-radius: 10px;
-    margin-bottom: 1rem;
-}
-
-.table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0 15px;
-    margin: 20px 0;
-    font-size: 1em;
-    width: 100%;
-}
-
-.table thead th {
-    padding: 12px 15px;
-    background: #1a1a1a;
-    color: #fefeeb;
-    border-style: none;
-}
-
-.table tbody tr {
-    background: #232323;
-    border-radius: 10px;
-}
-
-.table tbody tr td {
-    padding: 12px 15px;
-    text-align: left;
-    background: #232323;
-    color: #fefeeb;
-}
-.product-table-first {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-}
-
-.product-table-last {
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-}
-.products-icon {
-    display: flex;
-    gap: 20px;
-}
-
-.status.active {
-    color: #4CAF50;
-}
-
-.status.block {
-    color: #F44336;
-}
-
-.bi.bi-trash3 {
-    color: #FF0000;
-}
-
-.submit-btn {
-    color: #fefeeb;
-    background: #DB4444;
-    margin: 20px;
-}
-
-.submit-btn:hover {
-    background: #CE5252;
-}
-
-
-
-@media (max-width: 600px) {
-    .table thead {
-        display: none;
+        width: 95%;
+        background: #232323;
+        padding: 10px;
+        box-shadow: 0 0 10px rgba(100, 98, 98, 0.5);
+        border-radius: 10px;
+        margin-bottom: 1rem;
     }
 
-    .table,
-    .table tbody,
-    .table tr,
-    .table td {
-        display: block;
+    .table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 15px;
+        margin: 20px 0;
+        font-size: 1em;
         width: 100%;
     }
 
-    .table tr {
-        margin-bottom: 15px;
+    .table thead th {
+        padding: 12px 15px;
+        background: #1a1a1a;
+        color: #fefeeb;
+        border-style: none;
     }
 
-    .table td {
-        text-align: right;
-        padding-left: 50%;
-        position: relative;
+    .table tbody tr {
+        background: #232323;
+        border-radius: 10px;
     }
 
-    .table td::before {
-        content: attr(data-label);
-        position: absolute;
-        left: 0;
-        width: 50%;
-        padding-left: 15px;
-        font-weight: bold;
+    .table tbody tr td {
+        padding: 12px 15px;
         text-align: left;
+        background: #232323;
+        color: #fefeeb;
     }
-}
-.view{
-    text-decoration: none;
-}
 
+    .product-table-first {
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+
+    .product-table-last {
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    .products-icon {
+        display: flex;
+        gap: 20px;
+    }
+
+    .status.active {
+        color: #4CAF50;
+    }
+
+    .status.block {
+        color: #F44336;
+    }
+
+    .bi.bi-trash3 {
+        color: #FF0000;
+    }
+
+    .submit-btn {
+        color: #fefeeb;
+        background: #DB4444;
+        margin: 20px;
+    }
+
+    .submit-btn:hover {
+        background: #CE5252;
+    }
+
+
+
+    @media (max-width: 600px) {
+        .table thead {
+            display: none;
+        }
+
+        .table,
+        .table tbody,
+        .table tr,
+        .table td {
+            display: block;
+            width: 100%;
+        }
+
+        .table tr {
+            margin-bottom: 15px;
+        }
+
+        .table td {
+            text-align: right;
+            padding-left: 50%;
+            position: relative;
+        }
+
+        .table td::before {
+            content: attr(data-label);
+            position: absolute;
+            left: 0;
+            width: 50%;
+            padding-left: 15px;
+            font-weight: bold;
+            text-align: left;
+        }
+    }
+
+    .view {
+        text-decoration: none;
+    }
 </style>
 
 
@@ -154,7 +156,8 @@
                 <input type="submit" class="btn btn-danger  submit-btn" value="Search">
             </form>
         </div>
-        <a href="/admin/logout" class="btn btn-danger" style="margin: 1rem;"><i class="fas fa-sign-out-alt"></i>logout</a>
+        <a href="/admin/logout" class="btn btn-danger" style="margin: 1rem;"><i
+                class="fas fa-sign-out-alt"></i>logout</a>
     </div>
 
     <!--------------------------------------- User table ---------------------------------------------------->
@@ -200,7 +203,7 @@
                         </td>
                         <td>
                             <a href="/admin/transaction/<%= user.id %>" class="view">
-                                <i class="bi bi-eye mx-3" ></i>View
+                                <i class="bi bi-eye mx-3"></i>View
                             </a>
                         </td>
                     </tr>
