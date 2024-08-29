@@ -67,6 +67,9 @@ const loginPost = async (req, res) => {
     if (!user) {
       return res.status(401).json({ success: false, message: 'Email is not registered. Please register now.' });
     }
+    if(user.isActive  == false){
+      return res.status(401).json({ success: false, message: 'This user is Blocked By Admin.' });
+    }
 
     const checkPass = await bcrypt.compare(password, user.password);
 

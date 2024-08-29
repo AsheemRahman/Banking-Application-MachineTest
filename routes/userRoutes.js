@@ -36,6 +36,11 @@ user.post('/deposit', isUser , dashboardController.deposit);
 user.post('/withdraw', isUser , dashboardController.withdraw);
 
 
+//---------------------------- transaction page ----------------------------
+
+user.get('/transaction' , isUser ,dashboardController.tansaction )
+
+
 //------------------------------- logout -------------------------------
 
 user.get('/logout' , dashboardController.logout);

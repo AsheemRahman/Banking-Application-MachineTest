@@ -1,0 +1,148 @@
+<style>
+    .transaction {
+        display: flex;
+        justify-content: center;
+    }
+
+    .transaction-history {
+        background: #232323;
+        color: #fefeeb;
+        border-radius: 5px;
+    }
+
+    .transaction-history h1 {
+        display: flex;
+        justify-content: center;
+        padding: 4rem;
+    }
+
+    .transaction-history {
+        margin: 20px 0;
+    }
+
+    .transaction-head,
+    .transaction-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .flex-row {
+        flex: 1;
+        text-align: center;
+    }
+
+    .transaction-head .flex-row {
+        font-weight: bold;
+    }
+
+    .transaction-row {
+        padding: 10px;
+        margin-top: 10px;
+    }
+
+    .no-history {
+        padding: 5rem;
+        display: flex;
+        justify-content: center;
+        margin: 5rem;
+    }
+
+    /*--------------------------------- Breadcrumbs ---------------------------------*/
+
+    .breadcrumbs {
+        font-size: 16px;
+        height: 5rem;
+        width: 14rem;
+        display: flex;
+        justify-content: end;
+        align-items: end;
+    }
+
+    .breadcrumbs ul {
+        list-style-type: none;
+        display: flex;
+    }
+
+    .breadcrumbs ul span {
+        color: #fefeeb;
+        margin: 0rem 1rem;
+    }
+
+    .breadcrumbs li:last-child {
+        font-weight: bold;
+    }
+
+    .breadcrumbs a {
+        text-decoration: none;
+        color: #fefeeb;
+    }
+
+    .breadcrumbs a:hover {
+        color: #f55;
+    }
+</style>
+
+
+<%- include('navbar') %>
+
+    <div class="transaction">
+        <div class="col-lg-10">
+            <div class="transaction-history">
+                <nav class="breadcrumbs">
+                    <ul>
+                        <li><a href="/dashboard">Dashboard</a></li>
+                        <span>/</span>
+                        <li><a href="#">Transaction</a></li>
+                    </ul>
+                </nav>
+                <h1>Transaction History</h1>
+                <% if(transactions.length> 0) { %>
+                    <div class="transaction-head">
+                        <div class="flex-row text-center">
+                            <h6>Date</h6>
+                        </div>
+                        <div class="flex-row text-center">
+                            <h6>Type</h6>
+                        </div>
+                        <div class="flex-row text-center">
+                            <h6>Order Id</h6>
+                        </div>
+                        <div class="flex-row text-center">
+                            <h6>Amount</h6>
+                        </div>
+                    </div>
+                    <% transactions.forEach(element=> { %>
+                        <div class="transaction-row">
+                            <div class="flex-row text-center">
+                                <p>
+                                    <%= element.createdAt.toDateString() %>
+                                </p>
+                            </div>
+                            <div class="flex-row text-center">
+                                <p>
+                                    <%= element.type %>
+                                </p>
+                            </div>
+                            <div class="flex-row text-center">
+                                <h6>#<%= element.orderId %>
+                                </h6>
+                            </div>
+                            <div class="flex-row text-center">
+                                <h5>₹ <%= element.amount %>
+                                </h5>
+                            </div>
+                        </div>
+                        <% }); %>
+                            <% } else { %>
+                                <h3 class="no-history">No Transactions Yet</h3>
+                                <% } %>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <%- include('footer') %>

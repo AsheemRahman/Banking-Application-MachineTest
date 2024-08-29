@@ -101,6 +101,23 @@ const withdraw = async (req, res) => {
 };
 
 
+const tansaction = async(req,res)=>{
+    try{
+        if(req.user){
+            const userId = req.user;
+
+            const transactions = await Transaction.find({ userId: userId }).sort({ createdAt: -1 });
+
+            res.render('user/transaction', { title : "Transactions",transactions });
+        } else {
+            res.redirect('/login');
+        }
+    }catch(error){
+        console.log(`error while render the Transaction page ${error}`)
+    }
+}
+
+
 //------------------------ Logout ---------------------------
 
 const logout = (req, res) => {
@@ -113,4 +130,4 @@ const logout = (req, res) => {
 }
 
 
-module.exports = { getDashboard , deposit , withdraw , logout }
+module.exports = { getDashboard , deposit , withdraw , logout , tansaction }
