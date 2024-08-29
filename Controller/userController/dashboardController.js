@@ -6,16 +6,17 @@ const Transaction = require('../../model/transactionSchema');
 const getDashboard = async (req, res) => {
     try {
         if(req.user){
-            const userSchema = req.user;
-            const user = await User.findById(userSchema);
+            const userId = req.user;
+            const user = await User.findById(userId);
 
-            const transactions = await Transaction.find({ userId: userSchema }).sort({ createdAt: -1 });
+            const transactions = await Transaction.find({ userId: userId }).sort({ createdAt: -1 });
 
             res.render('user/dashboard', { title : "Dashboard", user, transactions });
         } else {
             res.redirect('/login');
         }
     } catch (err) {
+        console.log(`error while render the Dashboard ${error}`)
         res.status(500).send(err.message);
     }
 };
