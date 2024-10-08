@@ -1,7 +1,7 @@
 
 # Banking Website
 
-The task involves developing a banking website using the MERN stack (MongoDB,Express.js, React.js, and Node.js). The website will allow users to perform basic bankingoperations such as depositing and withdrawing money from their accounts. Additionally,
+The task involves developing a banking website using the MERN stack (MongoDB,Express.js, and Node.js). The website will allow users to perform basic bankingoperations such as depositing and withdrawing money from their accounts. Additionally,
 users will be able to view their account balance and transaction history. An admin panel willbe provided for the bank administrators, enabling them to view user account details and
 disable user accounts when necessary.
 
